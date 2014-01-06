@@ -17,6 +17,23 @@ angular.module('starter.controllers', [])
   $scope.$on('tab.hidden', function() {
     // Might recycle content here
   });
+
+  $scope.showItem = function() {
+    alert("Hello");
+  };
+
+  $scope.editTodo = function(todo) {
+    $scope.editedTodo = todo;
+    console.log(todo);
+  }
+
+  $scope.doneEditing = function (todo) {
+                $scope.editedTodo = null;
+                if (!todo.title) {
+                        $scope.removeTodo(todo);
+                }
+        };
+
 })
 
 // A simple controller that shows a tapped item's data

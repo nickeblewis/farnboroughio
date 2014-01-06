@@ -12,9 +12,10 @@
       <content has-header="true" has-tabs="true">  
 
         <list>
-          <item ng-repeat="item in items" type="item-text-wrap" href="#/item/{{item.$id}}">
-              <h3>{{item.name}}</h3>
+          <item ng-repeat="item in items" type="item-text-wrap">
+              <h3 ng-dblclick="editTodo(item)">{{item.name}}</h3>
               <p>{{item.description}}</p>
+              <p>{{item.lat}} {{item.lng}}</p>
             </item>
           </item>
         </list>
