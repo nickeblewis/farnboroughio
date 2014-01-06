@@ -12,8 +12,8 @@
       <content has-header="true" has-tabs="true">  
 
         <list>
-          <item ng-repeat="item in items" type="item-text-wrap" href="#/item/{{item.id}}">
-              <h3>{{item.title}}</h3>
+          <item ng-repeat="item in items" type="item-text-wrap" href="#/item/{{item.$id}}">
+              <h3>{{item.name}}</h3>
               <p>{{item.description}}</p>
             </item>
           </item>

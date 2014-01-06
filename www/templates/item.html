@@ -4,9 +4,12 @@
   The ItemCtrl pulls data from the Items service (service.js)
   The Items service returns an array of item data
 -->
-<nav-page title="item.title">
+<nav-page title="item.name">
   <content has-header="true" padding="true">
   	<leaflet defaults="defaults" center="farnborough" marker="markers" height="180px" width="100%"></leaflet>
-    {{ item.description }}
+  	<h1>{{ item.name }}</h1>
+    <p>{{ item.description }}</p>
+    <p>{{ item.lat }}</p>
+    <p>{{ item.lng }}</p>
   </content>
 </nav-page>
