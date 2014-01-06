@@ -3,7 +3,7 @@
 // the 2nd parameter is an array or 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngRoute', 'ngAnimate', 'starter.services', 'starter.controllers'])
+angular.module('starter', ['leaflet-directive','ionic', 'ngRoute', 'ngAnimate', 'starter.services', 'starter.controllers'])
 
 .config(function ($compileProvider){
   // Needed for routing to work
@@ -20,11 +20,11 @@ angular.module('starter', ['ionic', 'ngRoute', 'ngAnimate', 'starter.services', 
     controller: 'AppCtrl'
   });
 
-  // if the url matches something like /pet/2 then this route
-  // will fire off the PetCtrl controller (controllers.js)
-  $routeProvider.when('/pet/:petId', {
-    templateUrl: 'templates/pet.html',
-    controller: 'PetCtrl'
+  // if the url matches something like /item/2 then this route
+  // will fire off the ItemCtrl controller (controllers.js)
+  $routeProvider.when('/item/:itemId', {
+    templateUrl: 'templates/item.html',
+    controller: 'ItemCtrl'
   });
 
   // if none of the above routes are met, use this fallback

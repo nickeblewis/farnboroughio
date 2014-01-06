@@ -7,24 +7,26 @@
   -->
   <tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" animate-nav="false">
 
-    <!-- Pets tab -->
-    <tab title="Pets" icon="icon ion-home" ng-controller="PetsTabCtrl">
-      <content has-header="true" has-tabs="true">
+    <!-- Items tab -->
+    <tab title="Home" icon="icon ion-home" ng-controller="ItemsTabCtrl">
+      <content has-header="true" has-tabs="true">  
+
         <list>
-          <link-item ng-repeat="pet in pets" type="item-text-wrap" href="#/pet/{{pet.id}}">
-              <h3>{{pet.title}}</h3>
-              <p>{{pet.description}}</p>
+          <item ng-repeat="item in items" type="item-text-wrap" href="#/item/{{item.id}}">
+              <h3>{{item.title}}</h3>
+              <p>{{item.description}}</p>
             </item>
-          </link-item>
+          </item>
         </list>
       </content>
     </tab>
 
-    <!-- Adoption tab -->
-    <tab title="Adopt" icon="icon ion-heart">
+    <!-- Registration tab -->
+    <tab title="Register" icon="icon ion-plus">
       <content has-header="true" has-tabs="true">
         <div class="padding">
-          <h2>Adopt a pet today.</h2>
+          <h2>Add yourself to the Guide!</h2>
+          <p>You can add your business to the Guide for £100 per year. TODO: Add more detail to this...</p>
         </div>
         <div class="list list-inset">
           <label class="item item-input">
@@ -38,17 +40,17 @@
           <label class="item item-input">
             <textarea placeholder="Any more info?"></textarea>
           </label>
-          <button class="button button-positive button-block">Adopt</button>
+          <button class="button button-positive button-block">Register</button>
         </div>
       </content>
     </tab>
 
-    <!-- Home tab -->
+    <!-- About tab -->
     <tab title="About" icon="icon ion-search">
       <content has-header="true" has-tabs="true" padding="true">
-        <h3>About this app</h3>
+        <h3>Farnborough Guide</h3>
         <p>
-          This is a sample seed project for the Ionic Framework. Please change it to match your needs.
+          TODO: Add a description of this product here
         </p>
       </content>
     </tab>

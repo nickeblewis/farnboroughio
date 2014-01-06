@@ -1,0 +1,12 @@
+<!--
+  This template was loaded because of the '/item/:petId' route (app.js)
+  'item' is a $scope variable created in the ItemCtrl controller (controllers.js)
+  The ItemCtrl pulls data from the Items service (service.js)
+  The Items service returns an array of item data
+-->
+<nav-page title="item.title">
+  <content has-header="true" padding="true">
+  	<leaflet defaults="defaults" center="farnborough" marker="markers" height="180px" width="100%"></leaflet>
+    {{ item.description }}
+  </content>
+</nav-page>
