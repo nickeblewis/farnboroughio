@@ -3,7 +3,7 @@
 // the 2nd parameter is an array or 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'ngAnimate', 'starter.services', 'starter.controllers'])
+angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'ngAnimate', 'starter.services', 'starter.controllers', 'starter.directives'])
 
 .config(function ($compileProvider){
   // Needed for routing to work

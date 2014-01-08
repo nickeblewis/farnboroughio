@@ -9,11 +9,11 @@
 
     <!-- Items tab -->
     <tab title="Home" icon="icon ion-home" ng-controller="ItemsTabCtrl">
-      <content has-header="true" has-tabs="true">  
+      <content has-header="true" has-tabs="true" ng-click="saveAll()">  
 
         <list>
           <item ng-repeat="item in items" type="item-text-wrap">
-              <h3 ng-dblclick="editTodo(item)">{{item.name}}</h3>
+              <h3><edit-in-place value="item"></edit-in-place></h3>
               <p>{{item.description}}</p>
               <p>{{item.lat}} {{item.lng}}</p>
             </item>

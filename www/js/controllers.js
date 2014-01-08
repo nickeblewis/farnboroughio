@@ -7,8 +7,10 @@ angular.module('starter.controllers', [])
 // A simple controller that fetches a list of data
 .controller('ItemsTabCtrl', function($scope, $firebase, Items) {
   // "Items" is a service returning mock data (services.js)
-  var ref = new Firebase("https://farnborough.firebaseio.com/places");
-  $scope.items = $firebase(ref);
+  var URL= "https://farnborough.firebaseio.com"
+  // var ref = new Firebase("https://farnborough.firebaseio.com/places");
+  
+  $scope.items = $firebase(new Firebase(URL + '/places'));
   //$scope.items = Items.all();
 
   $scope.$on('tab.shown', function() {
@@ -25,6 +27,7 @@ angular.module('starter.controllers', [])
   $scope.editTodo = function(todo) {
     $scope.editedTodo = todo;
     console.log(todo);
+    alert(todo.id);
   }
 
   $scope.doneEditing = function (todo) {
@@ -33,6 +36,10 @@ angular.module('starter.controllers', [])
                         $scope.removeTodo(todo);
                 }
         };
+
+    $scope.saveAll = function() {
+      $scope.items.$save();
+    };
 
 })
 
