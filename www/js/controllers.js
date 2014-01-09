@@ -20,8 +20,12 @@ angular.module('starter.controllers', [])
     // Might recycle content here
   });
 
-  $scope.addNewPlace = function() {
+  $scope.createPlace = function(place) {
     console.log("New place added");
+    $scope.items.$add({
+      name: place.title,
+      description: place.description
+    });
   };
 
   $scope.showItem = function() {
@@ -34,11 +38,9 @@ angular.module('starter.controllers', [])
     alert(todo.id);
   }
 
-  
-
-    $scope.saveAll = function() {
-      $scope.items.$save();
-    };
+  $scope.saveAll = function() {
+    $scope.items.$save();
+  };
 
 })
 

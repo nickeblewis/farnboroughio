@@ -5,10 +5,10 @@
   Create tabs with an icon and text label, using the tabs-positive style (blue by default),
   and disabling header title animation when switching tabs.
   -->
-  <tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" animate-nav="false">
+  <tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" animate-nav="false" ng-controller="ItemsTabCtrl">
 
     <!-- Items tab -->
-    <tab title="Home" icon="icon ion-home" ng-controller="ItemsTabCtrl">
+    <tab title="Home" icon="icon ion-home">
       <content has-header="true" has-tabs="true" ng-click="saveAll()">  
 
         <list>
@@ -25,21 +25,23 @@
     <!-- Registration tab -->
     <tab title="Add" icon="icon ion-plus">
       <content has-header="true" has-tabs="true">
-        <div class="padding">
-          <h2>Add yourself to the Guide!</h2>
-          <p>You can add your business to the Guide for £100 per year. TODO: Add more detail to this...</p>
-        </div>
-        <div class="list list-inset">
-          <label class="item item-input">
-            <span class="input-label">Name</span>
-            <input type="text">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Description</span>
-            <input type="password">
-          </label>
-          
-          <button ng-click="addNewPlace()" class="button button-positive button-block">Add</button>
+        <form ng-submit="createPlace(place)">
+          <div class="padding">
+            <h2>Add yourself to the Guide!</h2>
+            <p>You can add your business to the Guide for £100 per year. TODO: Add more detail to this...</p>
+          </div>
+          <div class="list list-inset">
+            <label class="item item-input">
+              <span class="input-label" ng-model="place.name">Name</span>
+              <input type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Description</span>
+              <input type="text" ng-model="place.description">
+            </label>
+            
+            <button class="button button-positive button-block">Add</button>
+        </form>
         </div>
       </content>
     </tab>
