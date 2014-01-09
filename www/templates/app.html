@@ -23,7 +23,7 @@
     </tab>
 
     <!-- Registration tab -->
-    <tab title="Register" icon="icon ion-plus">
+    <tab title="Add" icon="icon ion-plus">
       <content has-header="true" has-tabs="true">
         <div class="padding">
           <h2>Add yourself to the Guide!</h2>
@@ -31,23 +31,21 @@
         </div>
         <div class="list list-inset">
           <label class="item item-input">
-            <span class="input-label">Your name</span>
+            <span class="input-label">Name</span>
             <input type="text">
           </label>
           <label class="item item-input">
-            <span class="input-label">Your email</span>
+            <span class="input-label">Description</span>
             <input type="password">
           </label>
-          <label class="item item-input">
-            <textarea placeholder="Any more info?"></textarea>
-          </label>
-          <button class="button button-positive button-block">Register</button>
+          
+          <button ng-click="addNewPlace()" class="button button-positive button-block">Add</button>
         </div>
       </content>
     </tab>
 
     <!-- About tab -->
-    <tab title="About" icon="icon ion-search">
+    <tab title="Map" icon="icon ion-search">
       <content has-header="true" has-tabs="true" padding="true">
         <h3>Farnborough Guide</h3>
         <p>
