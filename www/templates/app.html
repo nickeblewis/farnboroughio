@@ -31,13 +31,16 @@
             <p>You can add your business to the Guide for £100 per year. TODO: Add more detail to this...</p>
           </div>
           <div class="list list-inset">
-            <!-- <label class="item item-input">
+            <label class="item item-input">
               <span class="input-label" ng-model="place.name">Name</span>
-              <input type="text">
-            </label> -->
+              <input type="text" ng-model="place.name">
+            </label>
             <label class="item item-input">
               <span class="input-label">Description</span>
-              <input type="text" ng-model="place.description">
+              <!-- <input type="text" ng-model="place.description"> -->
+              <textarea rows="5" cols="10" ng-model="place.description">
+                {{place.description}}
+              </textarea>
             </label>
             
             <button class="button button-positive button-block">Add</button>

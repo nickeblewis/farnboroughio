@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
   $scope.createPlace = function(place) {
     console.log("New place added");
     $scope.items.$add({
-      name: place.title,
+      name: place.name,
       description: place.description
     });
   };
