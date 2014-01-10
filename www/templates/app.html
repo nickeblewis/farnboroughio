@@ -5,10 +5,10 @@
   Create tabs with an icon and text label, using the tabs-positive style (blue by default),
   and disabling header title animation when switching tabs.
   -->
-  <tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" animate-nav="false" ng-controller="ItemsTabCtrl">
+  <tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" animate-nav="false">
 
     <!-- Items tab -->
-    <tab title="Home" icon="icon ion-home">
+    <tab title="Home" icon="icon ion-home"  ng-controller="ItemsTabCtrl">
       <content has-header="true" has-tabs="true" ng-click="saveAll()">  
 
         <list>
@@ -23,7 +23,7 @@
     </tab>
 
     <!-- Registration tab -->
-    <tab title="Add" icon="icon ion-plus">
+    <tab title="Add" icon="icon ion-plus" ng-controller="NewPlaceCtrl">
       <content has-header="true" has-tabs="true">
        
         <form ng-submit="createPlace(place)">
@@ -63,9 +63,14 @@
     </tab>
 
     <!-- About tab -->
-    <tab title="Map" icon="icon ion-search">
+    <tab title="Map" icon="icon ion-search" ng-controller="MapCtrl">
       <content has-header="true" has-tabs="true" padding="true">
-        <leaflet defaults="defaults" center="farnborough" marker="markers" height="400px" width="100%"></leaflet>
+        <div class="card">
+          <div class="item item-text-wrap">
+            <leaflet defaults="defaults" center="farnborough" marker="markers" height="400px" width="100%"></leaflet>    
+          </div>
+        </div>
+        
       </content>
     </tab>
 
