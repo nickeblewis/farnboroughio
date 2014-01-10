@@ -12,10 +12,10 @@
       <content has-header="true" has-tabs="true" ng-click="saveAll()">  
 
         <list>
-          <item ng-repeat="item in items" type="item-text-wrap">
-              <h3><edit-in-place value="item"></edit-in-place></h3>
-              <p>{{item.description}}</p>
-              <p>{{item.lat}} {{item.lng}}</p>
+          <item ng-repeat="item in items" type="item-text-wrap" ng-click="showPlace(item)">
+              <h3>{{item.name}}</h3>
+              <!-- <p>{{item.description}}</p>
+              <p>{{item.lat}} {{item.lng}}</p> -->
             </item>
           </item>
         </list>
@@ -76,3 +76,25 @@
 
   </tabs>
 </nav-page>
+
+<script id="new-task.html" type="text/ng-template">
+
+  <div class="modal">
+
+    <!-- Modal header bar -->
+    <header class="bar bar-header bar-secondary">
+      <h1 class="title header-positive">Show</h1>
+      <button class="button button-clear button-positive" ng-click="closePlace()">Cancel</button>
+    </header>
+
+    <!-- Modal content area -->
+    <content has-header="true">
+      <h1>{{item.name}}</h1>
+      
+      <p>{{item.description}}</p>
+
+    </content>
+
+  </div>
+
+</script>

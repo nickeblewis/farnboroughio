@@ -20,7 +20,7 @@ angular.module('starter.controllers', [])
 })
 
 // A simple controller that fetches a list of data
-.controller('ItemsTabCtrl', function($scope, $firebase, Items, geolocation) {
+.controller('ItemsTabCtrl', function($scope, $firebase, Items, geolocation, Modal) {
   // "Items" is a service returning mock data (services.js)
     var URL= "https://farnborough.firebaseio.com"
     // var ref = new Firebase("https://farnborough.firebaseio.com/places");
@@ -89,10 +89,26 @@ angular.module('starter.controllers', [])
     });
   };
 
- 
+ // Create and load the Modal
+  Modal.fromTemplateUrl('new-task.html', function(modal) {
+    $scope.taskModal = modal;
+  }, {
+    scope: $scope,
+    animation: 'slide-in-up'
+  });
 
   $scope.showItem = function() {
     alert("Hello");
+  };
+
+  $scope.showPlace = function(item) {
+    $scope.taskModal.scope.item = item;
+    $scope.taskModal.show();
+  };
+
+  // Close the new task modal
+  $scope.closePlace = function() {
+    $scope.taskModal.hide();
   };
 
   $scope.editTodo = function(todo) {
@@ -158,11 +174,27 @@ $scope.place = {
   };
 })
 
-.controller('MapCtrl', function($scope, $routeParams, $firebase, Items) {
+.controller('MapCtrl', function($scope, $routeParams, $firebase, Items) { 
+
+  var lat = 51.293, lng = -0.75;
+
+  $scope.$on('tab.shown', function() {
+      // Might do a load here
+       console.log("getting gps");
+      navigator.geolocation.getCurrentPosition(
+          function(position) {
+              $scope.farnborough.lat = position.coords.latitude;
+              $scope.farnborough.lng = position.coords.longitude;
+          },
+          function() {
+              alert('Error getting location');
+      });
+    });
+
   angular.extend($scope, {
     farnborough: {
-      lat: 51.293,
-      lng: -0.75,
+      lat: lat,
+      lng: lng,
       zoom: 16
     },
     markers: {
@@ -192,6 +224,9 @@ $scope.place = {
       scrollWheelZoom: false
     }
   });
+
+ 
+
 })
 
 // A simple controller that shows a tapped item's data
