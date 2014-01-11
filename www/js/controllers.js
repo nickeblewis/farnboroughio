@@ -1,105 +1,25 @@
 angular.module('starter.controllers', [])
-
 .controller('AppCtrl', function($scope) {
-  // Main app controller, empty for the example
-   $scope.$on('tab.shown', function() {
-    // Might do a load here
-     console.log("getting gps");
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
-            place.lat = position.coords.latitude;
-            place.lng = position.coords.longitude;
-        },
-        function() {
-            alert('Error getting location');
-    });
-  });
-  $scope.$on('tab.hidden', function() {
-    console.log("Hidden");
-  });
+  // Currently not in use
 })
 
-// A simple controller that fetches a list of data
+// The Main List Controller
+// "Items" is a service returning mock data (services.js)
+// TODO - geolocation - is it needed still in the params below???
 .controller('ItemsTabCtrl', function($scope, $firebase, Items, geolocation, Modal) {
-  // "Items" is a service returning mock data (services.js)
-    var URL= "https://farnborough.firebaseio.com"
-    // var ref = new Firebase("https://farnborough.firebaseio.com/places");
-    
-    $scope.items = $firebase(new Firebase(URL + '/places'));
-    //$scope.items = Items.all();
+   
+  var placesURL= "https://farnborough.firebaseio.com"
+      
+  $scope.items = $firebase(new Firebase(placesURL + '/places'));
+  // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
 
-  var lat = 0, 
-          lng = 0;
-    $scope.$on('tab.shown', function() {
-      // Might do a load here
-       console.log("getting gps");
-      navigator.geolocation.getCurrentPosition(
-          function(position) {
-              lat = position.coords.latitude;
-              lng = position.coords.longitude;
-          },
-          function() {
-              alert('Error getting location');
-      });
-    });
-    $scope.$on('tab.hidden', function() {
-      console.log("Hidden");
-    });
-
-
-    
-    $scope.place = {
-      "name": "",
-      "description": "",
-      "lat": lat,
-      "lng": lng
-    };
-
-  
-
-  $scope.getCurrentLat = function(geolocation) {
-    console.log("getting gps");
-    
-    
-
-    return lat;
-  };
-
-  $scope.initForm =  function(place) {
-    console.log("getting gps");
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
-            place.lat = position.coords.latitude;
-            place.lng = position.coords.longitude;
-        },
-        function() {
-            alert('Error getting location');
-    });
-  };
-
-  $scope.createGPS = function(gps) {
-     console.log("getting gps");
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
-            place.lat = position.coords.latitude;
-            place.lng = position.coords.longitude;
-        },
-        function() {
-            alert('Error getting location');
-    });
-  };
-
- // Create and load the Modal
+  // Create and load the Modal
   Modal.fromTemplateUrl('new-task.html', function(modal) {
     $scope.taskModal = modal;
   }, {
     scope: $scope,
     animation: 'slide-in-up'
   });
-
-  $scope.showItem = function() {
-    alert("Hello");
-  };
 
   $scope.showPlace = function(item) {
     $scope.taskModal.scope.item = item;
@@ -111,60 +31,51 @@ angular.module('starter.controllers', [])
     $scope.taskModal.hide();
   };
 
-  $scope.editTodo = function(todo) {
-    $scope.editedTodo = todo;
-    console.log(todo);
-    alert(todo.id);
-  }
+  // $scope.editTodo = function(todo) {
+  //   $scope.editedTodo = todo;
+  //   console.log(todo);
+  //   alert(todo.id);
+  // }
 
   $scope.saveAll = function() {
     $scope.items.$save();
   };
-
-  
-
 })
 
 .controller('NewPlaceCtrl', function($scope, $routeParams, $firebase, Items) {
 
   var URL= "https://farnborough.firebaseio.com"
   // var ref = new Firebase("https://farnborough.firebaseio.com/places");
-  
+
   $scope.items = $firebase(new Firebase(URL + '/places'));
   //$scope.items = Items.all();
 
   var lat = 0, 
       lng = 0;
 
-$scope.place = {
+  $scope.place = {
     "name": "",
     "description": "",
     "lat": lat,
     "lng": lng
   };
+
   $scope.$on('tab.shown', function() {
-    // Might do a load here
-    console.log("getting gps");
     navigator.geolocation.getCurrentPosition(
-        function(position) {
-            $scope.place.lat = position.coords.latitude;
-            $scope.place.lng = position.coords.longitude;
-        },
-        function() {
-            alert('Error getting location');
-    });
+      function(position) {
+        $scope.place.lat = position.coords.latitude;
+        $scope.place.lng = position.coords.longitude;
+      },
+      function() {
+        alert('Error getting location');
+      });
   });
 
   $scope.$on('tab.hidden', function() {
     console.log("Hidden");
   });
 
-
-  
-  
-   $scope.createPlace = function(place) {
-    
-   
+  $scope.createPlace = function(place) {
     $scope.items.$add({
       name: place.name,
       description: place.description,
@@ -179,17 +90,17 @@ $scope.place = {
   var lat = 51.293, lng = -0.75;
 
   $scope.$on('tab.shown', function() {
-      // Might do a load here
-       console.log("getting gps");
-      navigator.geolocation.getCurrentPosition(
-          function(position) {
-              $scope.farnborough.lat = position.coords.latitude;
-              $scope.farnborough.lng = position.coords.longitude;
-          },
-          function() {
-              alert('Error getting location');
-      });
+    // Might do a load here
+     
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        $scope.farnborough.lat = position.coords.latitude;
+        $scope.farnborough.lng = position.coords.longitude;
+      },
+      function() {
+        alert('Error getting location');
     });
+  });
 
   angular.extend($scope, {
     farnborough: {
@@ -224,15 +135,10 @@ $scope.place = {
       scrollWheelZoom: false
     }
   });
-
- 
-
 })
 
 // A simple controller that shows a tapped item's data
 .controller('ItemCtrl', function($scope, $routeParams, $firebase, Items) {
-
-  //alert($routeParams.itemId);
 
   var placeRef = new Firebase("https://farnborough.firebaseio.com/places/zaffron");
 
@@ -248,5 +154,5 @@ $scope.place = {
   // "Items" is a service returning mock data (services.js)
   //$scope.item = Items.get($routeParams.itemId);
 
-  
+
 });
