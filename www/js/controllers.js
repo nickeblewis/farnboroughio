@@ -13,37 +13,14 @@ angular.module('starter.controllers', [])
   $scope.items = $firebase(new Firebase(placesURL + '/places'));
   // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
 
+  // TODO - Should I do something more specific with this onload event?
   $scope.items.$on('loaded', function() {
     console.log($scope.items);
   });
 
-  
-
-  $scope.itemSelected = function(name) {
-    console.log(name);
-  };
-
+  // TODO: The pull to refresh feature isn't working for the Phonegap build but what should happen is that the places list gets refreshed
   $scope.onRefresh = function() {
     $scope.items.$update();
-  };
-  $scope.showPlace = function(item) {
-    $scope.taskModal.scope.item = item;
-    $scope.taskModal.show();
-  };
-
-  // Close the new task modal
-  $scope.closePlace = function() {
-    $scope.taskModal.hide();
-  };
-
-  // $scope.editTodo = function(todo) {
-  //   $scope.editedTodo = todo;
-  //   console.log(todo);
-  //   alert(todo.id);
-  // }
-
-  $scope.saveAll = function() {
-    $scope.items.$save();
   };
 })
 
@@ -65,7 +42,7 @@ angular.module('starter.controllers', [])
     "lng": lng
   };
 
-  $scope.$on('tab.shown', function() {
+  $scope.init = function() {
     navigator.geolocation.getCurrentPosition(
       function(position) {
         $scope.place.lat = position.coords.latitude;
@@ -74,7 +51,9 @@ angular.module('starter.controllers', [])
       function() {
         alert('Error getting location');
       });
-  });
+  };
+
+  $scope.init();
 
   $scope.$on('tab.hidden', function() {
     console.log("Hidden");

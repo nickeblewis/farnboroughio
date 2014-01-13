@@ -60,6 +60,15 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
         }
       }
     })
+    .state('tabs.add', {
+      url: "/add",
+      views: {
+        'add-tab': {
+          templateUrl: "templates/add.html",
+          controller: "NewPlaceCtrl"
+        }
+      }
+    })
     .state('tabs.navstack', {
       url: "/navstack",
       views: {
@@ -77,33 +86,6 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
       }
     });
 
-
    $urlRouterProvider.otherwise("/tab/home");
 
 })
-
-.config(function($routeProvider, $locationProvider) {
-
-  // Set up the initial routes that our app will respond to.
-  // These are then tied up to our nav router which animates and
-  // updates a navigation bar
-  $routeProvider.when('/home', {
-    templateUrl: 'templates/app.html',
-    controller: 'AppCtrl'
-  });
-
-  // if the url matches something like /item/2 then this route
-  // will fire off the ItemCtrl controller (controllers.js)
-  $routeProvider.when('/item/:itemId', {
-    templateUrl: 'templates/item.html',
-    controller: 'ItemCtrl'
-  });
-
-  // if none of the above routes are met, use this fallback
-  // which executes the 'AppCtrl' controller (controllers.js)
-  $routeProvider.otherwise({
-    redirectTo: '/home'
-  });
-
-});
-

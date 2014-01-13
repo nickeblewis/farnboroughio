@@ -1,0 +1,39 @@
+<view title="'Add'">
+      <content has-header="true" has-tabs="true">
+       
+        <form ng-submit="createPlace(place)">
+          <div class="padding">
+            <h2>Add yourself to the Guide!</h2>
+            <p>You can add your business to the Guide for £100 per year. TODO: Add more detail to this...</p>
+          </div>
+          <div class="list list-inset">
+
+            <label class="item item-input">
+              <span class="input-label">Name</span>
+              <input type="text" ng-model="place.name">
+            </label>
+
+            <label class="item item-input">
+              <span class="input-label">Description</span>
+              <!-- <input type="text" ng-model="place.description"> -->
+              <textarea rows="5" cols="10" ng-model="place.description">
+                {{place.description}}
+              </textarea>
+            </label>
+
+             <label class="item item-input">
+                        <span class="input-label">Lat</span>
+                        <input type="text" ng-model="place.lat">
+                      </label>
+
+                      <label class="item item-input">
+                        <span class="input-label">Lng</span>
+                        <input type="text" ng-model="place.lng">
+                      </label>
+
+            <button class="button button-positive button-block">Add</button>
+        </form>
+        </div>
+      </content>
+    </view>
+  
