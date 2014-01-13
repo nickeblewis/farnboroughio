@@ -1,4 +1,4 @@
-<nav-page id="app-page">
+
 
 
   <!--
@@ -9,8 +9,12 @@
 
     <!-- Items tab -->
     <tab title="Home" icon="icon ion-home"  ng-controller="ItemsTabCtrl">
-      <content has-header="true" has-tabs="true" ng-click="saveAll()">  
-
+      <content has-header="true" has-tabs="true">  
+        <div class="card">
+  <div class="item item-text-wrap">
+    Some text
+  </div>
+</div>
         <list>
           <item ng-repeat="(name,item) in items" type="item-text-wrap"  href="#/item/{{name}}">
               <h3>{{item.name}}</h3>
@@ -75,7 +79,7 @@
     </tab>
 
   </tabs>
-</nav-page>
+
 
 <script id="new-task.html" type="text/ng-template">
 
