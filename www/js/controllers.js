@@ -35,12 +35,7 @@ angular.module('starter.controllers', [])
   var lat = 0, 
       lng = 0;
 
-  $scope.place = {
-    "name": "",
-    "description": "",
-    "lat": lat,
-    "lng": lng
-  };
+  $scope.place = {};
 
   $scope.init = function() {
     navigator.geolocation.getCurrentPosition(
@@ -53,7 +48,7 @@ angular.module('starter.controllers', [])
       });
   };
 
-  $scope.init();
+  //$scope.init();
 
   $scope.$on('tab.hidden', function() {
     console.log("Hidden");
