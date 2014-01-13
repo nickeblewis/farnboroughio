@@ -17,13 +17,11 @@ angular.module('starter.controllers', [])
     console.log($scope.items);
   });
 
-  // Create and load the Modal
-  Modal.fromTemplateUrl('new-task.html', function(modal) {
-    $scope.taskModal = modal;
-  }, {
-    scope: $scope,
-    animation: 'slide-in-up'
-  });
+  
+
+  $scope.itemSelected = function(name) {
+    console.log(name);
+  };
 
   $scope.onRefresh = function() {
     $scope.items.$update();
@@ -145,11 +143,13 @@ angular.module('starter.controllers', [])
 })
 
 // A simple controller that shows a tapped item's data
-.controller('ItemCtrl', function($scope, $routeParams, $firebase, Items) {
+.controller('ItemCtrl', function($scope, $stateParams, $firebase, Items) {
+
+  
 
   $scope.place = {};
 
-  var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $routeParams.itemId);
+  var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $stateParams.itemId);
     dataRef.on('value', function(snapshot) {
       console.log(snapshot.val());
       $scope.place.name = snapshot.val().name;
@@ -158,8 +158,7 @@ angular.module('starter.controllers', [])
       $scope.place.lng = snapshot.val().lng;
   });
 
-  // var ref = new Firebase('https://farnborough.firebaseio.com/places');
-  // angularFire(ref, $scope, 'places');
+ 
 
   angular.extend($scope, {
     center: {

@@ -16,13 +16,13 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
     .state('tabs', {
       url: "/tab",
       abstract: true,
-      templateUrl: "tabs.html"
+      templateUrl: "templates/tabs.html"
     })
     .state('tabs.home', {
       url: "/home",
       views: {
         'home-tab': {
-          templateUrl: "home.html",
+          templateUrl: "templates/home.html",
           controller: 'ItemsTabCtrl'
         }
       }
@@ -31,7 +31,7 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
       url: "/facts",
       views: {
         'home-tab': {
-          templateUrl: "facts.html"
+          templateUrl: "templates/facts.html"
         }
       }
     })
@@ -39,7 +39,16 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
       url: "/facts2",
       views: {
         'home-tab': {
-          templateUrl: "facts2.html"
+          templateUrl: "templates/facts2.html"
+        }
+      }
+    })
+    .state('tabs.details', {
+      url: "/details/:itemId",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/item.html",
+          controller: "ItemCtrl"
         }
       }
     })
@@ -47,7 +56,7 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
       url: "/about",
       views: {
         'about-tab': {
-          templateUrl: "about.html"
+          templateUrl: "templates/about.html"
         }
       }
     })
@@ -55,7 +64,7 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
       url: "/navstack",
       views: {
         'about-tab': {
-          templateUrl: "nav-stack.html"
+          templateUrl: "templates/nav-stack.html"
         }
       }
     })    
@@ -63,7 +72,7 @@ angular.module('starter', ['firebase','leaflet-directive','ionic', 'ngRoute', 'n
       url: "/contact",
       views: {
         'contact-tab': {
-          templateUrl: "contact.html"
+          templateUrl: "templates/contact.html"
         }
       }
     });
