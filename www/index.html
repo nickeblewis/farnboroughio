@@ -92,7 +92,9 @@
 
     <script id="home.html" type="text/ng-template">
       <view title="'Home'">
-        <content has-header="true" padding="true">
+        <content has-header="true" padding="true" scroll="true" on-refresh="onRefresh()">
+        <!-- for pull to refresh -->
+    <refresher></refresher>
           <p>Example of Ionic tabs. Navigate to each tab, and
           navigate to child views of each tab and notice how
           each tab has its own navigation history.</p>

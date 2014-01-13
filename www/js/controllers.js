@@ -25,6 +25,9 @@ angular.module('starter.controllers', [])
     animation: 'slide-in-up'
   });
 
+  $scope.onRefresh = function() {
+    $scope.items.$update();
+  };
   $scope.showPlace = function(item) {
     $scope.taskModal.scope.item = item;
     $scope.taskModal.show();
