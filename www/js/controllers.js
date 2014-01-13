@@ -13,6 +13,10 @@ angular.module('starter.controllers', [])
   $scope.items = $firebase(new Firebase(placesURL + '/places'));
   // or we can retrieve data from the mock service if we need to - $scope.places = Items.all();
 
+  $scope.items.$on('loaded', function() {
+    console.log($scope.items);
+  });
+
   // Create and load the Modal
   Modal.fromTemplateUrl('new-task.html', function(modal) {
     $scope.taskModal = modal;
@@ -140,19 +144,47 @@ angular.module('starter.controllers', [])
 // A simple controller that shows a tapped item's data
 .controller('ItemCtrl', function($scope, $routeParams, $firebase, Items) {
 
-  var placeRef = new Firebase("https://farnborough.firebaseio.com/places/zaffron");
+  $scope.place = {};
 
-  placeRef.on('value', function(snapshot) {
-    if(snapshot.val() === null) {
-      console.log("No exist");
-    } else {
+  var dataRef = new Firebase('https://farnborough.firebaseio.com/places/' + $routeParams.itemId);
+    dataRef.on('value', function(snapshot) {
       console.log(snapshot.val());
-      $scope.item = snapshot.val();
-    }
+      $scope.place.name = snapshot.val().name;
+      $scope.place.description = snapshot.val().description;
+      $scope.place.lat = snapshot.val().lat;
+      $scope.place.lng = snapshot.val().lng;
   });
 
-  // "Items" is a service returning mock data (services.js)
-  //$scope.item = Items.get($routeParams.itemId);
+  // var ref = new Firebase('https://farnborough.firebaseio.com/places');
+  // angularFire(ref, $scope, 'places');
 
-
+  angular.extend($scope, {
+    center: {
+      lat: $scope.place.lat,
+      lng: $scope.place.lng,
+      zoom: 16
+    },
+    markers: {
+      main_marker: {
+        lat: $scope.place.lat,
+        lng: $scope.place.lng,
+        focus: true,
+        draggable: true,
+        message: "Fred"
+             
+      }
+    },
+    defaults: {
+      maxZoom: 18,
+      minZoom: 1,
+      zoom: 6,
+      zoomControlPosition: 'topright',
+      tileLayerOptions: {
+        opacity: 0.9,
+        detectRetina: true,
+        reuseTiles: true,
+      },
+      scrollWheelZoom: false
+    }
+  });
 });
